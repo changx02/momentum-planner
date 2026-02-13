@@ -41,10 +41,6 @@ struct WeeklyView: View {
             Spacer()
                 .frame(height: 50)
 
-            // Additional padding to align with sidebar 12 icon
-            Spacer()
-                .frame(height: 33)
-
             // Header
             headerView
 

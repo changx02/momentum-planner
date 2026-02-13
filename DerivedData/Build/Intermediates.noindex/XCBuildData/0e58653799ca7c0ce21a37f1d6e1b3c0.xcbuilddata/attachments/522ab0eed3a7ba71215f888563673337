@@ -1,0 +1,219 @@
+{
+  "" : {
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Momentum-primary.dia",
+    "emit-module-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Momentum-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Momentum-primary-emit-module.dia",
+    "pch" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Momentum-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Momentum-primary.swiftdeps"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/App/AplyziaApp.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/AplyziaApp~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/App/ContentView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/ContentView~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/Entry.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Entry~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/Goal.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Goal~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/Reminder.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Reminder~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/RoutingRecord.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingRecord~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/SubscriptionTier.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionTier~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Models/TextBox.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TextBox~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Recognition/DateRecognitionEngine.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DateRecognitionEngine~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Recognition/TimeRecognitionEngine.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/TimeRecognitionEngine~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Services/NotificationService.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotificationService~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Services/RoutingService.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/RoutingService~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Services/SubscriptionService.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/SubscriptionService~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/DailyView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/DailyView~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/MonthlyView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/MonthlyView~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/NotesView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/NotesView~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/Sidebar.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Sidebar~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/Toolbar.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/Toolbar~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/WeeklyView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/WeeklyView~partial.swiftmodule"
+  },
+  "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/YearlyView.swift" : {
+    "const-values" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.swiftconstvalues",
+    "dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.d",
+    "diagnostics" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.dia",
+    "index-unit-output-path" : "/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.o",
+    "llvm-bc" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.bc",
+    "object" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.o",
+    "swift-dependencies" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView.swiftdeps",
+    "swiftmodule" : "/Users/veelee/Desktop/Momentum-Xcode/Momentum/DerivedData/Build/Intermediates.noindex/Momentum.build/Debug-iphonesimulator/Momentum.build/Objects-normal/x86_64/YearlyView~partial.swiftmodule"
+  }
+}

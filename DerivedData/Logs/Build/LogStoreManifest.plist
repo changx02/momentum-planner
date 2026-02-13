@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>065525D6-5BF0-47F7-95B0-7C892C3972A1</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>065525D6-5BF0-47F7-95B0-7C892C3972A1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Momentum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Momentum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Cleaning project Momentum with scheme Momentum and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>792520570.50882101</real>
+			<key>timeStoppedRecording</key>
+			<real>792520570.958498</real>
+			<key>title</key>
+			<string>Cleaning project Momentum with scheme Momentum and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>065525D6-5BF0-47F7-95B0-7C892C3972A1</string>
+		</dict>
+		<key>FB3F612D-4AB1-4E4D-A120-9CD21093A8E2</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FB3F612D-4AB1-4E4D-A120-9CD21093A8E2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Momentum project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Momentum</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Cleaning project Momentum with scheme Momentum</string>
+			<key>timeStartedRecording</key>
+			<real>792520942.22412503</real>
+			<key>timeStoppedRecording</key>
+			<real>792520942.64730203</real>
+			<key>title</key>
+			<string>Cleaning project Momentum with scheme Momentum</string>
+			<key>uniqueIdentifier</key>
+			<string>FB3F612D-4AB1-4E4D-A120-9CD21093A8E2</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

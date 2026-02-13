@@ -1,0 +1,72 @@
+{
+  "source": "/Users/veelee/Desktop/Momentum-Xcode/Momentum/Momentum/Views/DailyView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "FOCUS POINTS",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "Most important tasks.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 148
+        }
+      },
+      {
+        "comment": "",
+        "key": "ACTION LIST",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "☺",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 214
+        }
+      },
+      {
+        "comment": "",
+        "key": "NOTES",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 277
+        }
+      },
+      {
+        "comment": "",
+        "key": "TIME BLOCK",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 311
+        }
+      },
+      {
+        "comment": "",
+        "key": "TODAY'S WIN",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 526
+        }
+      }
+    ]
+  },
+  "version": 1
+}

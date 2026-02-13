@@ -75,6 +75,8 @@ struct MonthlyView: View {
                 // Calendar grid - only show rows with dates
                 GeometryReader { geometry in
                     let cellWidth = geometry.size.width / 7
+                    let availableHeight = geometry.size.height
+                    let calculatedCellHeight = availableHeight / CGFloat(numberOfWeeks)
 
                     VStack(spacing: 0) {
                         ForEach(0..<numberOfWeeks, id: \.self) { row in
@@ -92,13 +94,13 @@ struct MonthlyView: View {
                                                 isToday: calendar.isDateInToday(cellDate),
                                                 isCurrentMonth: calendar.isDate(cellDate, equalTo: date, toGranularity: .month)
                                             )
-                                            .frame(width: cellWidth, height: cellHeight)
+                                            .frame(width: cellWidth, height: calculatedCellHeight)
                                         }
                                         .buttonStyle(.plain)
                                     } else if row < numberOfWeeks - 1 || hasDateInWeek(row) {
                                         Rectangle()
                                             .fill(Color(hex: "#F9F4EA"))
-                                            .frame(width: cellWidth, height: cellHeight)
+                                            .frame(width: cellWidth, height: calculatedCellHeight)
                                             .overlay(
                                                 Rectangle()
                                                     .strokeBorder(Color(hex: "#CBCBCB"), lineWidth: 0.5)
@@ -109,12 +111,9 @@ struct MonthlyView: View {
                         }
                     }
                 }
-                .frame(height: CGFloat(numberOfWeeks) * cellHeight)
             }
             .padding(.horizontal, 40)
-            .padding(.bottom, 40)
-
-            Spacer()
+            .padding(.bottom, 45)
         }
         .background(Color(hex: "#F9F4EA"))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -182,11 +181,6 @@ struct MonthlyView: View {
         }
         let lastDateIndex = calendarDates.lastIndex(where: { $0 != nil }) ?? 34
         return (lastDateIndex / 7) + 1
-    }
-
-    private var cellHeight: CGFloat {
-        // Use smaller cells for 6-row months to maintain consistent total height
-        return numberOfWeeks == 6 ? 86 : 105
     }
 
     private func hasDateInWeek(_ week: Int) -> Bool {

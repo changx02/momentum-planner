@@ -51,7 +51,7 @@ struct ContentView: View {
 
             // Fixed top menu bar overlay (top layer over everything)
             VStack(spacing: 0) {
-                HStack(spacing: 0) {
+                ZStack {
                     // Left side: Sidebar toggle, Home, Undo, Redo
                     HStack(spacing: 12) {
                         // Sidebar toggle button (always visible)
@@ -95,20 +95,21 @@ struct ContentView: View {
                             }
                             .buttonStyle(.plain)
                         }
+
+                        Spacer()
                     }
                     .padding(.leading, 20)
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                     // Center: Toolbar (hide on home page)
                     if selectedView != .home {
-                        HStack {
-                            Spacer()
-                            Toolbar()
-                            Spacer()
-                        }
+                        Toolbar()
                     }
 
                     // Right side: Calendar and Search
                     HStack(spacing: 12) {
+                        Spacer()
+
                         Button(action: {
                             showCalendarPopover.toggle()
                         }) {
@@ -122,7 +123,7 @@ struct ContentView: View {
                                 .frame(width: 300)
                         }
 
-                        // Search bar with slide animation
+                        // Search bar with fixed width
                         HStack(spacing: 8) {
                             if isSearchActive {
                                 HStack(spacing: 8) {
@@ -130,10 +131,11 @@ struct ContentView: View {
                                         .textFieldStyle(.plain)
                                         .font(.system(size: 14))
                                         .foregroundColor(Color(hex: "#1A1A1A"))
-                                        .frame(width: 200)
                                         .onChange(of: searchText) { newValue in
                                             searchManager.search(query: newValue, in: allEntries)
                                         }
+
+                                    Spacer()
 
                                     if !searchText.isEmpty {
                                         // Result counter
@@ -141,6 +143,7 @@ struct ContentView: View {
                                             Text("\(searchManager.currentIndex + 1)/\(searchManager.results.count)")
                                                 .font(.system(size: 12))
                                                 .foregroundColor(Color(hex: "#666666"))
+                                                .fixedSize()
                                         }
 
                                         // Navigation arrows
@@ -179,6 +182,7 @@ struct ContentView: View {
                                 }
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
+                                .frame(width: 300)
                                 .background(Color(hex: "#FFFFFF"))
                                 .cornerRadius(16)
                                 .overlay(
@@ -205,6 +209,7 @@ struct ContentView: View {
                         }
                     }
                     .padding(.trailing, 40)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .padding(.top, 8)
                 .padding(.bottom, 4)

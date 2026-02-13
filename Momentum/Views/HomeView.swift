@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct HomeView: View {
     @Binding var selectedView: NavigationView
@@ -153,7 +154,8 @@ struct NewPlannerPopoverView: View {
     @State private var plannerName: String = "Untitled Planner"
     @State private var selectedSprint: String = "Three Months"
     @State private var selectedCover: Int? = nil
-    @State private var showSprintOptions: Bool = false
+    @State private var importedImage: UIImage? = nil
+    @State private var selectedPhotoItem: PhotosPickerItem? = nil
 
     private let sprintOptions = ["Three Months", "Six Months", "One Year"]
     private let coverImages = ["lotus", "lemon", "fruit"] // Placeholder names
@@ -173,71 +175,46 @@ struct NewPlannerPopoverView: View {
 
                 TextField("Untitled Planner", text: $plannerName)
                     .textFieldStyle(.plain)
+                    .font(.system(size: 14, weight: .regular))
                     .padding(12)
                     .background(Color(hex: "#F5F5F5"))
                     .cornerRadius(8)
             }
 
-            // Sprint picker
+            // Sprint picker with swipe gesture
             VStack(alignment: .leading, spacing: 8) {
                 Text("Sprint")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color(hex: "#1A1A1A"))
 
-                ZStack(alignment: .topLeading) {
-                    // Selected value display
-                    Button(action: {
-                        showSprintOptions.toggle()
-                    }) {
-                        HStack {
-                            Text(selectedSprint)
-                                .font(.system(size: 14, weight: .regular))
-                                .foregroundColor(Color(hex: "#1A1A1A"))
-                            Spacer()
-                            Image(systemName: showSprintOptions ? "chevron.up" : "chevron.down")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(hex: "#999999"))
-                        }
-                        .padding(12)
-                        .background(Color(hex: "#F5F5F5"))
-                        .cornerRadius(8)
-                    }
-                    .buttonStyle(.plain)
-                    .zIndex(1)
-
-                    // Dropdown options (overlay on top)
-                    if showSprintOptions {
-                        VStack(spacing: 0) {
-                            // Spacer for the button height
-                            Color.clear
-                                .frame(height: 44)
-
-                            VStack(spacing: 0) {
-                                ForEach(sprintOptions.filter { $0 != selectedSprint }, id: \.self) { option in
-                                    Button(action: {
-                                        selectedSprint = option
-                                        showSprintOptions = false
-                                    }) {
-                                        HStack {
-                                            Text(option)
-                                                .font(.system(size: 14, weight: .regular))
-                                                .foregroundColor(Color(hex: "#1A1A1A"))
-                                            Spacer()
-                                        }
-                                        .padding(12)
-                                        .background(Color(hex: "#F5F5F5"))
-                                    }
-                                    .buttonStyle(.plain)
-                                }
-                            }
-                            .background(Color(hex: "#F5F5F5"))
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-                        }
-                        .zIndex(2)
-                    }
+                HStack {
+                    Text(selectedSprint)
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(Color(hex: "#1A1A1A"))
+                    Spacer()
+                    Image(systemName: "chevron.left.chevron.right")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(hex: "#999999"))
                 }
-                .frame(height: 44)
+                .padding(12)
+                .background(Color(hex: "#F5F5F5"))
+                .cornerRadius(8)
+                .gesture(
+                    DragGesture(minimumDistance: 30)
+                        .onEnded { value in
+                            let currentIndex = sprintOptions.firstIndex(of: selectedSprint) ?? 0
+
+                            if value.translation.width < 0 {
+                                // Swipe left - next option
+                                let nextIndex = (currentIndex + 1) % sprintOptions.count
+                                selectedSprint = sprintOptions[nextIndex]
+                            } else if value.translation.width > 0 {
+                                // Swipe right - previous option
+                                let prevIndex = (currentIndex - 1 + sprintOptions.count) % sprintOptions.count
+                                selectedSprint = sprintOptions[prevIndex]
+                            }
+                        }
+                )
             }
 
             // Cover selection
@@ -247,42 +224,87 @@ struct NewPlannerPopoverView: View {
                     .foregroundColor(Color(hex: "#1A1A1A"))
 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                    // Import button
-                    Button(action: {
-                        // Import cover action
-                    }) {
-                        VStack {
-                            Image(systemName: "plus")
-                                .font(.system(size: 24))
-                                .foregroundColor(Color(hex: "#999999"))
-                            Text("Import")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(hex: "#999999"))
+                    // Import button with PhotosPicker
+                    PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                        if let importedImage = importedImage {
+                            ZStack(alignment: .topTrailing) {
+                                Image(uiImage: importedImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 120)
+                                    .frame(maxWidth: .infinity)
+                                    .cornerRadius(12)
+                                    .clipped()
+
+                                // Checkmark indicator
+                                if selectedCover == -1 {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color(hex: "#1A1A1A"))
+                                            .frame(width: 24, height: 24)
+
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 12, weight: .bold))
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding(8)
+                                }
+                            }
+                        } else {
+                            VStack {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color(hex: "#999999"))
+                                Text("Import")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(hex: "#999999"))
+                            }
+                            .frame(height: 120)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                    .foregroundColor(Color(hex: "#CCCCCC"))
+                            )
                         }
-                        .frame(height: 120)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.white)
-                        .cornerRadius(12)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                .foregroundColor(Color(hex: "#CCCCCC"))
-                        )
                     }
                     .buttonStyle(.plain)
+                    .onChange(of: selectedPhotoItem) { _, newItem in
+                        Task {
+                            if let data = try? await newItem?.loadTransferable(type: Data.self),
+                               let image = UIImage(data: data) {
+                                importedImage = image
+                                selectedCover = -1 // Mark imported image as selected
+                            }
+                        }
+                    }
 
                     // Cover options
                     ForEach(0..<3, id: \.self) { index in
                         Button(action: {
                             selectedCover = index
                         }) {
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(index == 0 ? Color(hex: "#5A8F7B") : (index == 1 ? Color(hex: "#C4B454") : Color(hex: "#7B9AC4")))
-                                .frame(height: 120)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(selectedCover == index ? Color(hex: "#1A1A1A") : Color.clear, lineWidth: 2)
-                                )
+                            ZStack(alignment: .topTrailing) {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(index == 0 ? Color(hex: "#5A8F7B") : (index == 1 ? Color(hex: "#C4B454") : Color(hex: "#7B9AC4")))
+                                    .frame(height: 120)
+
+                                // Checkmark indicator
+                                if selectedCover == index {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color(hex: "#1A1A1A"))
+                                            .frame(width: 24, height: 24)
+
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 12, weight: .bold))
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding(8)
+                                }
+                            }
                         }
                         .buttonStyle(.plain)
                     }

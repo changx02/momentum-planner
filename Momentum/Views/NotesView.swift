@@ -56,7 +56,7 @@ struct NotesView: View {
                 }
             }
             .padding(.horizontal, 40)
-            .padding(.bottom, 24)
+            .padding(.bottom, 45)
         }
         .background(Color(hex: "#F9F4EA"))
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -52,7 +52,7 @@ struct WeeklyView: View {
             ScrollView {
                 timeGridView
                     .padding(.horizontal, 40)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 45)
             }
         }
         .background(Color(hex: "#F9F4EA"))
@@ -114,7 +114,7 @@ struct WeeklyView: View {
                                 .foregroundColor(Color(hex: "#999999"))
                             Spacer()
                         }
-                        .frame(width: 32, height: 27.5)
+                        .frame(width: 32, height: 29.7)
 
                         // Day cells for this time slot
                         GeometryReader { geometry in
@@ -128,7 +128,8 @@ struct WeeklyView: View {
                                             date: date,
                                             timeSlot: timeSlot,
                                             entries: entriesForDateTime(date, timeSlot: timeSlot),
-                                            modelContext: modelContext
+                                            modelContext: modelContext,
+                                            cellHeight: 29.7
                                         )
                                         .frame(width: cellWidth)
                                     }
@@ -139,13 +140,13 @@ struct WeeklyView: View {
                                     for i in 1..<7 {
                                         let x = cellWidth * CGFloat(i)
                                         path.move(to: CGPoint(x: x, y: 0))
-                                        path.addLine(to: CGPoint(x: x, y: 27.5))
+                                        path.addLine(to: CGPoint(x: x, y: 29.7))
                                     }
                                 }
                                 .stroke(Color(hex: "#CBCBCB"), lineWidth: 0.5)
                             }
                         }
-                        .frame(height: 27.5)
+                        .frame(height: 29.7)
                         .overlay(
                             Rectangle()
                                 .stroke(Color(hex: "#CBCBCB"), lineWidth: 0.5)
@@ -223,13 +224,14 @@ struct TimeSlotCell: View {
     let timeSlot: String
     let entries: [Entry]
     let modelContext: ModelContext
+    let cellHeight: CGFloat
 
     private let calendar = Calendar.current
 
     var body: some View {
         Rectangle()
             .fill(Color(hex: "#F9F4EA"))
-            .frame(maxWidth: .infinity, minHeight: 27.5, maxHeight: 27.5)
+            .frame(maxWidth: .infinity, minHeight: cellHeight, maxHeight: cellHeight)
             .overlay(
                 VStack(alignment: .leading, spacing: 2) {
                     ForEach(entries.prefix(2)) { entry in

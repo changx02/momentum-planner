@@ -187,6 +187,16 @@ struct AppointmentTimeRow: View {
                 .frame(width: 120)
                 .background(Color(hex: "#F9F4EA"))
             }
+
+            // Delete button
+            Button(action: {
+                deleteEntry()
+            }) {
+                Image(systemName: "trash")
+                    .font(.system(size: 11))
+                    .foregroundColor(Color(hex: "#CBCBCB"))
+            }
+            .buttonStyle(.plain)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
@@ -232,6 +242,15 @@ struct AppointmentTimeRow: View {
         }
 
         showReminderMenu = false
+    }
+
+    private func deleteEntry() {
+        // Cancel any notifications for this entry
+        notificationService.cancelAllReminders(for: entry.id)
+
+        // Delete the entry from the database
+        modelContext.delete(entry)
+        try? modelContext.save()
     }
 
     private func timeString(from date: Date) -> String {

@@ -41,6 +41,10 @@ struct WeeklyView: View {
             Spacer()
                 .frame(height: 50)
 
+            // Additional padding below menu bar
+            Spacer()
+                .frame(height: 20)
+
             // Header
             headerView
 

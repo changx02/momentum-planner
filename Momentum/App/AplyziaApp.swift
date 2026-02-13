@@ -25,7 +25,8 @@ struct AplyziaApp: App {
                 Reminder.self,
                 TextBox.self,
                 Goal.self,
-                RoutingRecord.self
+                RoutingRecord.self,
+                NotePage.self
             ])
 
             let modelConfiguration = ModelConfiguration(

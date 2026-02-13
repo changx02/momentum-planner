@@ -64,7 +64,7 @@ struct WeeklyView: View {
     private var headerView: some View {
         HStack(alignment: .center) {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Text("FOCUS")
+                Text(monthAbbreviation)
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color(hex: "#1A1A1A"))
 
@@ -93,7 +93,7 @@ struct WeeklyView: View {
                 // Day names with dates - each in their own column
                 ForEach(Array(weekDates.enumerated()), id: \.offset) { index, date in
                     VStack(spacing: 0) {
-                        Text("\(fullDayName(for: date)) \(dayNumber(for: date))")
+                        Text("\(dayName(for: date)) \(dayNumber(for: date))")
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(Color(hex: "#1A1A1A"))
                             .tracking(0.3)
@@ -176,6 +176,12 @@ struct WeeklyView: View {
     private var weekNumber: String {
         let weekOfYear = calendar.component(.weekOfYear, from: date)
         return String(format: "%02d", weekOfYear)
+    }
+
+    private var monthAbbreviation: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        return formatter.string(from: date).uppercased()
     }
 
     private func dayName(for date: Date) -> String {

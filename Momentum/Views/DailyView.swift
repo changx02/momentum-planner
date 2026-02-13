@@ -209,7 +209,6 @@ struct DailyView: View {
     // MARK: - Action List Section
 
     private func actionListSection(height: CGFloat) -> some View {
-        let titleHeight: CGFloat = 30
         let rowCount = 22
         let boxHeight = CGFloat(rowCount) * 27.5
 
@@ -384,19 +383,22 @@ struct DailyView: View {
                         path.move(to: CGPoint(x: 0, y: 0.5))
                         path.addLine(to: CGPoint(x: geometry.size.width, y: 0.5))
 
-                        // Draw vertical margin line at x=65
-                        path.move(to: CGPoint(x: 65, y: 0))
-                        path.addLine(to: CGPoint(x: 65, y: verticalLineHeight))
+                        // Draw vertical margin line at x=100
+                        path.move(to: CGPoint(x: 100, y: 0))
+                        path.addLine(to: CGPoint(x: 100, y: verticalLineHeight))
                     }
                     .stroke(Color(hex: "#CBCBCB"), lineWidth: 0.5)
                 }
 
                 VStack(spacing: 0) {
                     ForEach(0..<rowCount, id: \.self) { index in
-                        SimpleTaskRow(
-                            entry: nil,
-                            onTextChange: { _, _ in },
-                            leftPadding: 16,
+                        TimeBlockRow(
+                            entry: timeBlockEntries.indices.contains(index) ? timeBlockEntries[index] : nil,
+                            rowIndex: index,
+                            date: date,
+                            onSave: { time, content in
+                                saveTimeBlockEntry(at: index, time: time, content: content)
+                            },
                             showBottomLine: true
                         )
                     }
@@ -465,6 +467,11 @@ struct DailyView: View {
         entries.filter { $0.entryType == .task && $0.taskSection == .actionList }
     }
 
+    private var timeBlockEntries: [Entry] {
+        entries.filter { $0.targetTime != nil && $0.taskSection == .timeBlock }
+            .sorted { ($0.targetTime ?? Date()) < ($1.targetTime ?? Date()) }
+    }
+
     // MARK: - Actions
 
     private func toggleTask(_ entry: Entry) {
@@ -500,6 +507,38 @@ struct DailyView: View {
         modelContext.insert(newEntry)
         try? modelContext.save()
         return newEntry
+    }
+
+    private func saveTimeBlockEntry(at index: Int, time: Date?, content: String) {
+        // Find existing entry at this index or create new one
+        let existingEntries = timeBlockEntries
+
+        if let existingEntry = existingEntries.indices.contains(index) ? existingEntries[index] : nil {
+            // Only update if entry belongs to current date
+            guard calendar.isDate(existingEntry.targetDate, inSameDayAs: date) else { return }
+
+            // Update existing entry
+            existingEntry.targetTime = time
+            existingEntry.content = content
+
+            // Delete if both time and content are empty
+            if time == nil && content.isEmpty {
+                modelContext.delete(existingEntry)
+            }
+        } else if time != nil || !content.isEmpty {
+            // Create new entry only if there's data
+            let newEntry = Entry(
+                content: content,
+                entryType: .event,
+                targetDate: date,
+                targetTime: time,
+                hasCheckbox: false
+            )
+            newEntry.taskSection = .timeBlock // Mark as TIME BLOCK entry
+            modelContext.insert(newEntry)
+        }
+
+        try? modelContext.save()
     }
 
     private func handleRecognizedText(_ text: String, dates: [RecognizedDate], times: [RecognizedTime]) {
@@ -727,6 +766,248 @@ struct GridPatternView: View {
             .stroke(Color(hex: "#CBCBCB"), lineWidth: 0.5)
             .opacity(0.65)
         }
+    }
+}
+
+struct TimeBlockRow: View {
+    let entry: Entry?
+    let rowIndex: Int
+    let date: Date
+    let onSave: (Date?, String) -> Void
+    let showBottomLine: Bool
+
+    @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject private var notificationService: NotificationService
+    @State private var timeText: String = ""
+    @State private var contentText: String = ""
+    @State private var isEditing: Bool = false
+    @State private var showReminderMenu: Bool = false
+    @State private var selectedReminderOffset: Int? = nil
+    @State private var scrollOffset: CGFloat = 0
+    @FocusState private var isTimeFocused: Bool
+    @FocusState private var isContentFocused: Bool
+
+    private let calendar = Calendar.current
+
+    private var isFocused: Bool {
+        isTimeFocused || isContentFocused
+    }
+
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    // Left column: Time input (100px wide)
+                    TextField("", text: $timeText, axis: .vertical)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(hex: "#1A1A1A"))
+                        .multilineTextAlignment(.leading)
+                        .focused($isTimeFocused)
+                        .frame(width: 100, height: 27)
+                        .padding(.leading, 8)
+                        .onChange(of: timeText) { _, newValue in
+                            isEditing = true
+                        }
+                        .onChange(of: isTimeFocused) { _, focused in
+                            if !focused && isEditing {
+                                saveEntry()
+                                isEditing = false
+                                // Show reminder menu if time was just entered
+                                if !timeText.isEmpty && entry != nil {
+                                    showReminderMenu = true
+                                }
+                            }
+                        }
+                    .onSubmit {
+                        saveEntry()
+                        isTimeFocused = false
+                        if !timeText.isEmpty {
+                            showReminderMenu = true
+                        } else {
+                            isContentFocused = true
+                        }
+                    }
+                    .popover(isPresented: $showReminderMenu, arrowEdge: .trailing) {
+                        VStack(spacing: 8) {
+                            Text("REMINDER")
+                                .font(.system(size: 11, weight: .medium))
+                                .foregroundColor(Color(hex: "#1A1A1A"))
+                                .padding(.bottom, 4)
+
+                            Button("1 day") {
+                                setReminder(minutes: 1440)
+                            }
+                            .font(.system(size: 12))
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 4)
+
+                            Button("1 hour") {
+                                setReminder(minutes: 60)
+                            }
+                            .font(.system(size: 12))
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 4)
+
+                            Button("30 min") {
+                                setReminder(minutes: 30)
+                            }
+                            .font(.system(size: 12))
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 4)
+
+                            Button("None") {
+                                setReminder(minutes: nil)
+                            }
+                            .font(.system(size: 12))
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 4)
+                            .foregroundColor(Color(hex: "#999999"))
+                        }
+                        .padding(12)
+                        .frame(width: 120)
+                        .background(Color(hex: "#F9F4EA"))
+                    }
+
+                    // Right column: Content input
+                    TextField("", text: $contentText, axis: .vertical)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(hex: "#1A1A1A"))
+                        .focused($isContentFocused)
+                        .padding(.leading, 8)
+                        .frame(height: 27)
+                        .onChange(of: contentText) { _, newValue in
+                            isEditing = true
+                        }
+                        .onChange(of: isContentFocused) { _, focused in
+                            if !focused && isEditing {
+                                saveEntry()
+                                isEditing = false
+                            }
+                        }
+                        .onSubmit {
+                            saveEntry()
+                            isContentFocused = false
+                        }
+
+                    Spacer()
+                }
+                .frame(height: 27)
+
+                // Horizontal ruled line
+                if showBottomLine {
+                    Rectangle()
+                        .fill(Color(hex: "#CBCBCB"))
+                        .frame(height: 0.5)
+                }
+            }
+            .scaleEffect(isFocused ? 1.05 : 1.0)
+            .animation(.easeInOut(duration: 0.2), value: isFocused)
+            .onAppear {
+                loadEntry()
+            }
+            .onChange(of: entry?.id) { _, _ in
+                loadEntry()
+            }
+        }
+    }
+
+    private func loadEntry() {
+        if let entry = entry {
+            contentText = entry.content
+            if let time = entry.targetTime {
+                timeText = formatTime(time)
+            }
+            selectedReminderOffset = entry.reminderOffsetMinutes
+        } else {
+            timeText = ""
+            contentText = ""
+            selectedReminderOffset = nil
+        }
+        isEditing = false
+    }
+
+    private func saveEntry() {
+        let parsedTime = parseTime(timeText)
+        onSave(parsedTime, contentText)
+    }
+
+    private func setReminder(minutes: Int?) {
+        guard let entry = entry, let targetTime = entry.targetTime else {
+            showReminderMenu = false
+            return
+        }
+
+        // Update the reminder offset
+        entry.reminderOffsetMinutes = minutes
+        try? modelContext.save()
+        selectedReminderOffset = minutes
+
+        // Cancel any existing notifications for this entry
+        notificationService.cancelAllReminders(for: entry.id)
+
+        // Schedule new notification if reminder is set
+        if let offsetMinutes = minutes {
+            Task {
+                // Calculate reminder time
+                let reminderTime = targetTime.addingTimeInterval(TimeInterval(-offsetMinutes * 60))
+
+                // Create reminder object
+                let reminder = Reminder(
+                    entryID: entry.id,
+                    reminderTime: reminderTime,
+                    offsetMinutes: offsetMinutes,
+                    offsetType: .before,
+                    notificationTitle: "Upcoming: \(entry.content.isEmpty ? "Event" : entry.content)",
+                    notificationBody: "Starting at \(formatTime(targetTime))"
+                )
+
+                // Schedule notification
+                let success = await notificationService.scheduleReminder(reminder, for: entry)
+                if success {
+                    print("✓ Scheduled notification for \(entry.content) at \(reminderTime)")
+                } else {
+                    print("✗ Failed to schedule notification")
+                }
+            }
+        }
+
+        showReminderMenu = false
+        isContentFocused = true
+    }
+
+    private func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter.string(from: date)
+    }
+
+    private func parseTime(_ text: String) -> Date? {
+        guard !text.trimmingCharacters(in: .whitespaces).isEmpty else { return nil }
+
+        let formatter = DateFormatter()
+
+        // Try multiple formats
+        let formats = ["h:mm a", "h:mma", "h a", "ha", "HH:mm", "H:mm"]
+
+        for format in formats {
+            formatter.dateFormat = format
+            if let parsedTime = formatter.date(from: text) {
+                // Combine parsed time with the current date
+                let timeComponents = calendar.dateComponents([.hour, .minute], from: parsedTime)
+                let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+
+                var combined = DateComponents()
+                combined.year = dateComponents.year
+                combined.month = dateComponents.month
+                combined.day = dateComponents.day
+                combined.hour = timeComponents.hour
+                combined.minute = timeComponents.minute
+
+                return calendar.date(from: combined)
+            }
+        }
+
+        return nil
     }
 }
 

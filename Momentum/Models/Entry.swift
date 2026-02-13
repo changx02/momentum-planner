@@ -39,6 +39,9 @@ final class Entry {
     var completionMethod: CompletionMethod?
     var completedDate: Date?
 
+    // Reminder offset for TIME BLOCK entries (in minutes)
+    var reminderOffsetMinutes: Int?
+
     init(
         id: UUID = UUID(),
         content: String,
@@ -86,4 +89,5 @@ enum CompletionMethod: String, Codable {
 enum TaskSection: String, Codable {
     case focusPoint
     case actionList
+    case timeBlock
 }

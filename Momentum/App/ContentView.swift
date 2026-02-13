@@ -18,6 +18,7 @@ struct ContentView: View {
     @StateObject private var searchManager = SearchManager()
 
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var notificationService: NotificationService
     @Query private var allEntries: [Entry]
 
     var body: some View {
@@ -131,7 +132,7 @@ struct ContentView: View {
                                         .textFieldStyle(.plain)
                                         .font(.system(size: 14))
                                         .foregroundColor(Color(hex: "#1A1A1A"))
-                                        .onChange(of: searchText) { newValue in
+                                        .onChange(of: searchText) { _, newValue in
                                             searchManager.search(query: newValue, in: allEntries)
                                         }
 
@@ -219,6 +220,13 @@ struct ContentView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+        .onAppear {
+            // Request notification permission on first launch
+            Task {
+                await notificationService.requestPermission()
+                notificationService.setupNotificationCategories()
+            }
         }
     }
 

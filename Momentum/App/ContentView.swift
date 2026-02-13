@@ -236,7 +236,7 @@ struct ContentView: View {
                 highlightedEntryID: searchManager.currentResult?.entry.id
             )
         case .weekly:
-            WeeklyView(date: selectedDate)
+            WeeklyView(date: $selectedDate)
         case .monthly:
             MonthlyView(date: selectedDate, selectedView: $selectedView, selectedDate: $selectedDate)
         case .yearly:

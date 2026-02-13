@@ -42,7 +42,10 @@ struct Sidebar: View {
             }
 
             // Weekly view button (WKS)
-            Button(action: { selectedView = .weekly }) {
+            Button(action: {
+                selectedDate = Date() // Set to current date/time
+                selectedView = .weekly
+            }) {
                 Text("WKS")
                     .font(.system(size: 11, weight: .medium))
                     .foregroundColor(selectedView == .weekly ? Color(hex: "#1A1A1A") : Color(hex: "#666666"))

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct WeeklyView: View {
-    let date: Date
+    @Binding var date: Date
 
     @Environment(\.modelContext) private var modelContext
     @Query private var allEntries: [Entry]
@@ -49,14 +49,33 @@ struct WeeklyView: View {
             headerView
 
             // Weekly time grid
-            ScrollView {
-                timeGridView
-                    .padding(.horizontal, 40)
-                    .padding(.bottom, 45)
-            }
+            timeGridView
+                .padding(.horizontal, 40)
+                .padding(.bottom, 45)
         }
         .background(Color(hex: "#F9F4EA"))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 50)
+                .onEnded { value in
+                    let horizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
+
+                    if horizontalSwipe {
+                        // Swipe left = next week, Swipe right = previous week
+                        if value.translation.width < -50 {
+                            // Swipe left - go to next week
+                            if let nextWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: date) {
+                                date = nextWeek
+                            }
+                        } else if value.translation.width > 50 {
+                            // Swipe right - go to previous week
+                            if let prevWeek = calendar.date(byAdding: .weekOfYear, value: -1, to: date) {
+                                date = prevWeek
+                            }
+                        }
+                    }
+                }
+        )
     }
 
     // MARK: - Header
@@ -214,7 +233,8 @@ struct WeeklyView: View {
         let hour = Int(timeSlot) ?? 0
         return allEntries.filter { entry in
             guard calendar.isDate(entry.targetDate, inSameDayAs: date),
-                  let targetTime = entry.targetTime else {
+                  let targetTime = entry.targetTime,
+                  !entry.content.isEmpty else {
                 return false
             }
             let entryHour = calendar.component(.hour, from: targetTime)
@@ -238,53 +258,9 @@ struct TimeSlotCell: View {
         Rectangle()
             .fill(Color(hex: "#F9F4EA"))
             .frame(maxWidth: .infinity, minHeight: cellHeight, maxHeight: cellHeight)
-            .overlay(
-                VStack(alignment: .leading, spacing: 2) {
-                    ForEach(entries.prefix(2)) { entry in
-                        HStack(spacing: 4) {
-                            // Small checkbox indicator
-                            Circle()
-                                .fill(entry.isCompleted ? Color(hex: "#4CAF50") : Color(hex: "#CCCCCC"))
-                                .frame(width: 5, height: 5)
-
-                            // Entry text (truncated)
-                            Text(entry.content)
-                                .font(.system(size: 8))
-                                .foregroundColor(Color(hex: "#1A1A1A"))
-                                .lineLimit(1)
-                        }
-                    }
-                }
-                .padding(4),
-                alignment: .topLeading
-            )
-            .contentShape(Rectangle())
-            .onTapGesture {
-                // Add new entry for this time slot
-                addNewEntry()
-            }
-    }
-
-    private func addNewEntry() {
-        // Create date-time by combining date and time slot
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
-        let hour = Int(timeSlot) ?? 0
-        components.hour = hour
-        components.minute = 0
-
-        guard let targetDateTime = calendar.date(from: components) else { return }
-
-        let newEntry = Entry(
-            content: "",
-            entryType: .event,
-            targetDate: date,
-            targetTime: targetDateTime
-        )
-        modelContext.insert(newEntry)
-        try? modelContext.save()
     }
 }
 
 #Preview {
-    WeeklyView(date: Date())
+    WeeklyView(date: .constant(Date()))
 }

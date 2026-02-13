@@ -142,9 +142,9 @@ class NotificationService: NSObject, ObservableObject {
         let newTime = Date().addingTimeInterval(TimeInterval(minutes * 60))
 
         // Create new reminder with snoozed time
-        var snoozedReminder = reminder
-        snoozedReminder.isSnoozed = true
-        snoozedReminder.snoozeUntil = newTime
+        let snoozedReminder = reminder
+        _ = snoozedReminder.isSnoozed
+        _ = newTime
 
         // Reschedule (needs entry reference - would be handled by caller)
         return true
@@ -212,9 +212,8 @@ extension NotificationService: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        let userInfo = response.notification.request.content.userInfo
-
         Task { @MainActor in
+            let userInfo = response.notification.request.content.userInfo
             switch response.actionIdentifier {
             case "COMPLETE_ACTION":
                 // Handle completion (would integrate with entry management)

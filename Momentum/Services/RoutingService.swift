@@ -108,13 +108,13 @@ class RoutingService: ObservableObject {
     ) async -> Bool {
         // Monthly content automatically appears in all weekly views within that month
         let calendar = Calendar.current
-        let month = calendar.component(.month, from: monthlyEntry.targetDate)
-        let year = calendar.component(.year, from: monthlyEntry.targetDate)
+        _ = calendar.component(.month, from: monthlyEntry.targetDate)
+        _ = calendar.component(.year, from: monthlyEntry.targetDate)
 
         // Get all weeks in the month
-        let weeksInMonth = calendar.range(of: .weekOfMonth, in: .month, for: monthlyEntry.targetDate)?.count ?? 4
+        _ = calendar.range(of: .weekOfMonth, in: .month, for: monthlyEntry.targetDate)?.count ?? 4
 
-        var views: [ViewType] = [.weekly]
+        let views: [ViewType] = [.weekly]
 
         return await routeEntry(monthlyEntry, to: monthlyEntry.targetDate, views: views, modelContext: modelContext)
     }

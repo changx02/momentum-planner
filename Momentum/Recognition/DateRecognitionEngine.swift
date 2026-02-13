@@ -175,10 +175,10 @@ class DateRecognitionEngine {
     // MARK: - Date Range Recognition
 
     private func recognizeDateRanges(in text: String) -> [RecognizedDate] {
-        var results: [RecognizedDate] = []
+        let results: [RecognizedDate] = []
 
         // "March 20-25", "3/20-3/25"
-        let rangePattern = #"(\w+\s+\d{1,2}|\d{1,2}\/\d{1,2})\s*[-–]\s*(\d{1,2}|\d{1,2}\/\d{1,2})"#
+        _ = #"(\w+\s+\d{1,2}|\d{1,2}\/\d{1,2})\s*[-–]\s*(\d{1,2}|\d{1,2}\/\d{1,2})"#
 
         // For now, we'll just return the start date
         // Full range support would expand this
@@ -189,7 +189,7 @@ class DateRecognitionEngine {
     // MARK: - NLP-Based Recognition
 
     private func recognizeWithNLP(in text: String) -> [RecognizedDate] {
-        var results: [RecognizedDate] = []
+        let results: [RecognizedDate] = []
 
         let tagger = NLTagger(tagSchemes: [.nameType])
         tagger.string = text

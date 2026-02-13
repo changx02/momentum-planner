@@ -39,11 +39,11 @@ struct WeeklyView: View {
         VStack(spacing: 0) {
             // Spacer for top menu bar
             Spacer()
-                .frame(height: 50)
+                .frame(height: 74)
 
             // Additional padding below menu bar
             Spacer()
-                .frame(height: 20)
+                .frame(height: 9)
 
             // Header
             headerView

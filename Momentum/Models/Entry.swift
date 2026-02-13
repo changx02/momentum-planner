@@ -42,6 +42,9 @@ final class Entry {
     // Reminder offset for TIME BLOCK entries (in minutes)
     var reminderOffsetMinutes: Int?
 
+    // Important flag for monthly view display
+    var isImportant: Bool = false
+
     init(
         id: UUID = UUID(),
         content: String,
@@ -55,7 +58,8 @@ final class Entry {
         hasReminder: Bool = false,
         originalHandwriting: Data? = nil,
         handwritingPreserved: Bool = false,
-        textBoxID: UUID? = nil
+        textBoxID: UUID? = nil,
+        isImportant: Bool = false
     ) {
         self.id = id
         self.content = content
@@ -70,6 +74,7 @@ final class Entry {
         self.originalHandwriting = originalHandwriting
         self.handwritingPreserved = handwritingPreserved
         self.textBoxID = textBoxID
+        self.isImportant = isImportant
     }
 }
 
@@ -90,4 +95,5 @@ enum TaskSection: String, Codable {
     case focusPoint
     case actionList
     case timeBlock
+    case todaysWin
 }

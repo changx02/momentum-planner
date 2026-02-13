@@ -97,7 +97,16 @@ struct DailyView: View {
                 .padding(.bottom, 45)
             }
         }
-        .background(Color(hex: "#F9F4EA"))
+        .background(
+            Color(hex: "#F9F4EA")
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    // Dismiss keyboard when tapping background
+                    DispatchQueue.main.async {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+        )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .gesture(
             DragGesture()
@@ -172,7 +181,10 @@ struct DailyView: View {
                                 isHighlighted: focusPointEntries.indices.contains(index) && focusPointEntries[index].id == highlightedEntryID,
                                 onTextChange: { updateTaskContent($0, $1) },
                                 onToggleComplete: { toggleTask($0) },
-                                onCreateEntry: { _ in addNewTask(type: .focusPoint) }
+                                onCreateEntry: { _ in addNewTask(type: .focusPoint) },
+                                onMoveToNextDay: { moveTaskToNextDay($0) },
+                                onMoveToPreviousDay: { moveTaskToPreviousDay($0) },
+                                onDeleteTask: { deleteTaskFromParent($0) }
                             )
 
                             // Horizontal ruled line
@@ -305,21 +317,16 @@ struct DailyView: View {
                 }
 
                 VStack(spacing: 0) {
-                    ForEach(0..<min(actionListEntries.count, rowCount), id: \.self) { index in
-                        SimpleTaskRow(
-                            entry: actionListEntries[index],
-                            onTextChange: { updateTaskContent($0, $1) },
-                            leftPadding: 16,
-                            showBottomLine: true
-                        )
-                    }
-
-                    ForEach(min(actionListEntries.count, rowCount)..<rowCount, id: \.self) { index in
-                        SimpleTaskRow(
-                            entry: nil,
-                            onTextChange: { _, _ in },
-                            leftPadding: 16,
-                            showBottomLine: true
+                    ForEach(0..<rowCount, id: \.self) { index in
+                        ActionListRow(
+                            entry: actionListEntries.indices.contains(index) ? actionListEntries[index] : nil,
+                            rowIndex: index,
+                            date: date,
+                            onToggleComplete: { toggleTask($0) },
+                            onMoveToNextDay: { moveTaskToNextDay($0) },
+                            onMoveToPreviousDay: { moveTaskToPreviousDay($0) },
+                            onCreateEntry: { _ in addNewTask(type: .actionList) },
+                            onDeleteTask: { deleteTaskFromParent($0) }
                         )
                     }
                 }
@@ -399,6 +406,9 @@ struct DailyView: View {
                             onSave: { time, content in
                                 saveTimeBlockEntry(at: index, time: time, content: content)
                             },
+                            onDeleteTask: { entry in
+                                deleteTaskFromParent(entry)
+                            },
                             showBottomLine: true
                         )
                     }
@@ -421,8 +431,17 @@ struct DailyView: View {
             VStack(spacing: 0) {
                 ForEach(0..<2) { index in
                     SimpleTaskRow(
-                        entry: nil,
-                        onTextChange: { _, _ in },
+                        entry: todaysWinEntries.indices.contains(index) ? todaysWinEntries[index] : nil,
+                        onTextChange: { entry, newContent in
+                            updateTaskContent(entry, newContent)
+                        },
+                        onDeleteTask: { entry in
+                            deleteTaskFromParent(entry)
+                        },
+                        onCreateEntry: { _ in
+                            addNewTask(type: .todaysWin)
+                        },
+                        rowIndex: index,
                         showBottomLine: true
                     )
                 }
@@ -472,12 +491,27 @@ struct DailyView: View {
             .sorted { ($0.targetTime ?? Date()) < ($1.targetTime ?? Date()) }
     }
 
+    private var todaysWinEntries: [Entry] {
+        entries.filter { $0.entryType == .task && $0.taskSection == .todaysWin }
+            .prefix(2)
+            .map { $0 }
+    }
+
     // MARK: - Actions
 
     private func toggleTask(_ entry: Entry) {
         entry.isCompleted.toggle()
         entry.completedDate = entry.isCompleted ? Date() : nil
         try? modelContext.save()
+    }
+
+    private func deleteTaskFromParent(_ entry: Entry) {
+        modelContext.delete(entry)
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error deleting task from parent: \(error)")
+        }
     }
 
     private func toggleStar(_ entry: Entry) {
@@ -488,6 +522,20 @@ struct DailyView: View {
     private func updateTaskContent(_ entry: Entry, _ newContent: String) {
         entry.content = newContent
         try? modelContext.save()
+    }
+
+    private func moveTaskToNextDay(_ entry: Entry) {
+        if let nextDay = calendar.date(byAdding: .day, value: 1, to: entry.targetDate) {
+            entry.targetDate = nextDay
+            try? modelContext.save()
+        }
+    }
+
+    private func moveTaskToPreviousDay(_ entry: Entry) {
+        if let previousDay = calendar.date(byAdding: .day, value: -1, to: entry.targetDate) {
+            entry.targetDate = previousDay
+            try? modelContext.save()
+        }
     }
 
     private func addNewTask(type: TaskType) -> Entry {
@@ -503,6 +551,8 @@ struct DailyView: View {
             newEntry.taskSection = .focusPoint
         case .actionList:
             newEntry.taskSection = .actionList
+        case .todaysWin:
+            newEntry.taskSection = .todaysWin
         }
         modelContext.insert(newEntry)
         try? modelContext.save()
@@ -600,85 +650,300 @@ struct FocusPointRow: View {
     let onTextChange: ((Entry, String) -> Void)?
     let onToggleComplete: ((Entry) -> Void)?
     let onCreateEntry: ((Int) -> Entry)?
+    let onMoveToNextDay: ((Entry) -> Void)?
+    let onMoveToPreviousDay: ((Entry) -> Void)?
+    let onDeleteTask: ((Entry) -> Void)?
+
+    @Environment(\.modelContext) private var modelContext
+    @State private var contentText: String = ""
+    @State private var isEditing: Bool = false
+    @FocusState private var isFocused: Bool
+
+    private let calendar = Calendar.current
 
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            // Column 1: Invisible checkbox (28px wide to match the vertical line)
-            Button(action: {
-                if let entry = entry {
-                    onToggleComplete?(entry)
+            // Column 1: Gesture canvas area (28px wide to match the vertical line)
+            ZStack {
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(width: 28, height: 27)
+
+                if let entry = entry, entry.isCompleted {
+                    // Show checkmark for completed tasks
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 10, weight: .medium))
+                        .foregroundColor(Color(hex: "#1A1A1A"))
                 }
-            }) {
+
+                if entry != nil {
+                    // Always show gesture canvas for tasks (allows uncomplete with line)
+                    SimpleGestureCanvas { gesture in
+                        handleLeftColumnGesture(gesture)
+                    }
+                    .frame(width: 28, height: 27)
+                    .allowsHitTesting(true)
+                }
+            }
+
+            // Column 2: Editable text with gesture overlay
+            ZStack {
+                TextField("", text: $contentText, axis: .vertical)
+                    .font(.system(size: 12))
+                    .foregroundColor(Color(hex: "#1A1A1A"))
+                    .focused($isFocused)
+                    .padding(.leading, 8)
+                    .padding(.trailing, 8)
+                    .padding(.vertical, 6)
+                    .frame(minHeight: 27)
+                    .onChange(of: contentText) { _, newValue in
+                        isEditing = true
+                    }
+                    .onChange(of: isFocused) { _, focused in
+                        if !focused && isEditing {
+                            saveEntry()
+                            isEditing = false
+                        }
+                    }
+                    .onSubmit {
+                        saveEntry()
+                        isFocused = false
+                    }
+                    .onAppear {
+                        loadEntry()
+                    }
+                    .onChange(of: entry?.id) { _, _ in
+                        loadEntry()
+                    }
+                    .background(isHighlighted ? Color.yellow.opacity(0.3) : Color.clear)
+                    .onLongPressGesture {
+                        markAsImportant()
+                    }
+                    .onTapGesture(count: 2) {
+                        // Double-tap to delete task
+                        if let entry = entry {
+                            onDeleteTask?(entry)
+                        }
+                    }
+            }
+        }
+        .frame(minHeight: 27)
+    }
+
+    private func loadEntry() {
+        if let entry = entry {
+            contentText = entry.content
+        } else {
+            contentText = ""
+        }
+        isEditing = false
+    }
+
+    private func saveEntry() {
+        guard !contentText.isEmpty else { return }
+
+        if let entry = entry {
+            entry.content = contentText
+            try? modelContext.save()
+        } else if let newEntry = onCreateEntry?(rowIndex) {
+            newEntry.content = contentText
+            try? modelContext.save()
+        }
+    }
+
+    private func markAsImportant() {
+        guard let entry = entry else { return }
+        entry.isImportant = true
+        try? modelContext.save()
+    }
+
+    // Left column gesture handler: checkmark, uncomplete, move tasks
+    private func handleLeftColumnGesture(_ gesture: RecognizedGesture) {
+        guard let entry = entry else { return }
+
+        switch gesture.type {
+        case .checkmark:
+            // Mark task as complete
+            onToggleComplete?(entry)
+
+        case .crossOut:
+            // Uncomplete the task (remove checkmark)
+            if entry.isCompleted {
+                onToggleComplete?(entry)
+            }
+
+        case .arrowLeft:
+            // Move to previous day
+            onMoveToPreviousDay?(entry)
+
+        case .arrowRight:
+            // Move to next day
+            onMoveToNextDay?(entry)
+
+        case .unknown:
+            break
+        }
+    }
+
+}
+
+struct ActionListRow: View {
+    let entry: Entry?
+    let rowIndex: Int
+    let date: Date
+    let onToggleComplete: ((Entry) -> Void)?
+    let onMoveToNextDay: ((Entry) -> Void)?
+    let onMoveToPreviousDay: ((Entry) -> Void)?
+    let onCreateEntry: ((Int) -> Entry)?
+    let onDeleteTask: ((Entry) -> Void)?
+
+    @Environment(\.modelContext) private var modelContext
+    @State private var contentText: String = ""
+    @State private var isEditing: Bool = false
+    @FocusState private var isFocused: Bool
+
+    private let calendar = Calendar.current
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .top, spacing: 0) {
+                // Column 1: Gesture canvas area (28px wide to match the vertical line)
+                // Shows checkmark when completed (with canvas overlay to allow uncomplete)
+                // Shows canvas for active tasks
                 ZStack {
                     Rectangle()
                         .fill(Color.clear)
                         .frame(width: 28, height: 27)
 
                     if let entry = entry, entry.isCompleted {
+                        // Show checkmark for completed tasks
                         Image(systemName: "checkmark")
                             .font(.system(size: 10, weight: .medium))
                             .foregroundColor(Color(hex: "#1A1A1A"))
                     }
-                }
-            }
-            .buttonStyle(.plain)
 
-            // Column 2: Read-only text with wrapping and highlighting
-            ZStack(alignment: .leading) {
-                if isHighlighted && !searchText.isEmpty && entry != nil {
-                    // Show highlighted text view when searching
-                    highlightedTextView(text: entry?.content ?? "", searchText: searchText)
-                        .padding(.leading, 8)
-                        .padding(.trailing, 8)
-                        .padding(.vertical, 6)
-                } else {
-                    // Show read-only text
-                    Text(entry?.content ?? "")
+                    if entry != nil {
+                        // Always show gesture canvas for tasks (allows uncomplete with X)
+                        SimpleGestureCanvas { gesture in
+                            handleLeftColumnGesture(gesture)
+                        }
+                        .frame(width: 28, height: 27)
+                        .allowsHitTesting(true)
+                    }
+                }
+
+                // Column 2: Editable text with gesture overlay
+                ZStack {
+                    TextField("", text: $contentText, axis: .vertical)
                         .font(.system(size: 12))
                         .foregroundColor(Color(hex: "#1A1A1A"))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .focused($isFocused)
                         .padding(.leading, 8)
                         .padding(.trailing, 8)
                         .padding(.vertical, 6)
+                        .frame(minHeight: 27)
+                        .onChange(of: contentText) { _, newValue in
+                            isEditing = true
+                        }
+                        .onChange(of: isFocused) { _, focused in
+                            if !focused && isEditing {
+                                saveEntry()
+                                isEditing = false
+                            }
+                        }
+                        .onSubmit {
+                            saveEntry()
+                            isFocused = false
+                        }
+                        .onAppear {
+                            loadEntry()
+                        }
+                        .onChange(of: entry?.id) { _, _ in
+                            loadEntry()
+                        }
+                        .onLongPressGesture {
+                            markAsImportant()
+                        }
+                        .onTapGesture(count: 2) {
+                            // Double-tap to delete task
+                            if let entry = entry {
+                                onDeleteTask?(entry)
+                            }
+                        }
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(isHighlighted ? Color.yellow.opacity(0.3) : Color.clear)
+            .frame(minHeight: 27)
+
+            // Horizontal ruled line
+            Rectangle()
+                .fill(Color(hex: "#CBCBCB"))
+                .frame(height: 0.5)
         }
-        .frame(minHeight: 27)
     }
 
-    private func highlightedTextView(text: String, searchText: String) -> some View {
-        let attributedString = highlightMatches(in: text, searchText: searchText)
-        return Text(attributedString)
-            .font(.system(size: 12))
-            .frame(maxWidth: .infinity, alignment: .leading)
+    private func loadEntry() {
+        if let entry = entry {
+            contentText = entry.content
+        } else {
+            contentText = ""
+        }
+        isEditing = false
     }
 
-    private func highlightMatches(in text: String, searchText: String) -> AttributedString {
-        var attributedString = AttributedString(text)
-        let lowercasedText = text.lowercased()
-        let lowercasedSearch = searchText.lowercased()
+    private func saveEntry() {
+        guard !contentText.isEmpty else { return }
 
-        var searchStartIndex = lowercasedText.startIndex
-        while searchStartIndex < lowercasedText.endIndex,
-              let range = lowercasedText.range(of: lowercasedSearch, range: searchStartIndex..<lowercasedText.endIndex) {
+        if let entry = entry {
+            entry.content = contentText
+            try? modelContext.save()
+        } else if let newEntry = onCreateEntry?(rowIndex) {
+            newEntry.content = contentText
+            try? modelContext.save()
+        }
+    }
 
-            let attributedRange = Range(range, in: attributedString)
-            if let attributedRange = attributedRange {
-                attributedString[attributedRange].backgroundColor = .yellow
-                attributedString[attributedRange].foregroundColor = .black
+    private func markAsImportant() {
+        guard let entry = entry else { return }
+        entry.isImportant = true
+        try? modelContext.save()
+    }
+
+    // Left column gesture handler: checkmark, uncomplete, move tasks
+    private func handleLeftColumnGesture(_ gesture: RecognizedGesture) {
+        guard let entry = entry else { return }
+
+        switch gesture.type {
+        case .checkmark:
+            // Mark task as complete
+            onToggleComplete?(entry)
+
+        case .crossOut:
+            // Uncomplete the task (remove checkmark)
+            if entry.isCompleted {
+                onToggleComplete?(entry)
             }
-            searchStartIndex = range.upperBound
-        }
 
-        return attributedString
+        case .arrowLeft:
+            // Move to previous day
+            onMoveToPreviousDay?(entry)
+
+        case .arrowRight:
+            // Move to next day
+            onMoveToNextDay?(entry)
+
+        case .unknown:
+            break
+        }
     }
+
 }
 
 struct SimpleTaskRow: View {
     let entry: Entry?
     let onTextChange: ((Entry, String) -> Void)?
+    let onDeleteTask: ((Entry) -> Void)?
+    let onCreateEntry: ((Int) -> Entry)?
+    let rowIndex: Int
     let leftPadding: CGFloat
     let showBottomLine: Bool
 
@@ -687,10 +952,16 @@ struct SimpleTaskRow: View {
 
     init(entry: Entry?,
          onTextChange: ((Entry, String) -> Void)?,
+         onDeleteTask: ((Entry) -> Void)? = nil,
+         onCreateEntry: ((Int) -> Entry)? = nil,
+         rowIndex: Int = 0,
          leftPadding: CGFloat = 16,
          showBottomLine: Bool = true) {
         self.entry = entry
         self.onTextChange = onTextChange
+        self.onDeleteTask = onDeleteTask
+        self.onCreateEntry = onCreateEntry
+        self.rowIndex = rowIndex
         self.leftPadding = leftPadding
         self.showBottomLine = showBottomLine
     }
@@ -703,24 +974,26 @@ struct SimpleTaskRow: View {
                     .fill(Color.clear)
                     .frame(width: 10, height: 10)
 
-                if let entry = entry {
-                    // Editable text field
-                    TextField("", text: $editText, axis: .vertical)
-                        .font(.system(size: 12))
-                        .foregroundColor(Color(hex: "#1A1A1A"))
-                        .focused($isFocused)
-                        .onAppear {
-                            editText = entry.content
+                // Editable text field
+                TextField("", text: $editText, axis: .vertical)
+                    .font(.system(size: 12))
+                    .foregroundColor(Color(hex: "#1A1A1A"))
+                    .focused($isFocused)
+                    .onAppear {
+                        editText = entry?.content ?? ""
+                    }
+                    .onChange(of: editText) { oldValue, newValue in
+                        handleTextChange(newValue)
+                    }
+                    .onSubmit {
+                        isFocused = false
+                    }
+                    .onTapGesture(count: 2) {
+                        // Double-tap to delete task
+                        if let entry = entry {
+                            onDeleteTask?(entry)
                         }
-                        .onChange(of: editText) { oldValue, newValue in
-                            onTextChange?(entry, newValue)
-                        }
-                        .onSubmit {
-                            isFocused = false
-                        }
-                } else {
-                    Spacer()
-                }
+                    }
 
                 Spacer()
             }
@@ -735,6 +1008,16 @@ struct SimpleTaskRow: View {
             }
         }
     }
+
+    private func handleTextChange(_ newContent: String) {
+        if let entry = entry {
+            onTextChange?(entry, newContent)
+        } else if !newContent.isEmpty, let newEntry = onCreateEntry?(rowIndex) {
+            newEntry.content = newContent
+            onTextChange?(newEntry, newContent)
+        }
+    }
+
 }
 
 struct GridPatternView: View {
@@ -774,6 +1057,7 @@ struct TimeBlockRow: View {
     let rowIndex: Int
     let date: Date
     let onSave: (Date?, String) -> Void
+    let onDeleteTask: ((Entry) -> Void)?
     let showBottomLine: Bool
 
     @Environment(\.modelContext) private var modelContext
@@ -887,6 +1171,12 @@ struct TimeBlockRow: View {
                         .onSubmit {
                             saveEntry()
                             isContentFocused = false
+                        }
+                        .onTapGesture(count: 2) {
+                            // Double-tap to delete task
+                            if let entry = entry {
+                                onDeleteTask?(entry)
+                            }
                         }
 
                     Spacer()
@@ -1014,4 +1304,5 @@ struct TimeBlockRow: View {
 enum TaskType {
     case focusPoint
     case actionList
+    case todaysWin
 }
